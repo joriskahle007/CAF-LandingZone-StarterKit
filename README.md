@@ -95,31 +95,29 @@ Ganz einfach – folge diesen Schritten:
     az account set --subscription $subscriptionID
     ```
 
-3. Bereitstellung starten
-Du hast zwei Optionen:
+3. Im nächsten Schritt können Sie zwischen zwei Optionen wählen:
 
-1. Option 1: Klassische Bereitstellung mit 
-
- ```azurecli
-    az login
-    ```
-
-2. Option 2: Neue Bereitstellung mit 
-
-    ```azurecli
-    az login
-    ```
-
-    
-Option 2: Neue Bereitstellung mit .bicepparam-Datei
-
-  Erstelle eine Datei azskmain.bicepparam, um die Parameter zu definieren. Dafür brauchst Du:
-- Azure CLI **2.48.1** oder neuer
-- Bicep **0.16.2** oder neuer
-- Eine konfigurierte bicepconfig.json (Beispiel im Repo)
+- Erstellen Sie eine neue Bereitstellung auf der Abonnementebene mit der klassischen **.json-Parameterdatei**, um das Starter Kit bereitzustellen
 
     ```azurecli
     $location = "your preferred location"
+    
+    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
+    
+    ```
+
+- Erstellen Sie eine neue Bereitstellung auf der Abonnementebene mit der neuen **.bicepparam-Parameterdatei**, um das Starterkit bereitzustellen
+
+    Zu diesem Zweck müssen Sie eine neue Bicep-Datei mit dem Namen azskmain.bicepparam erstellen, um die Parameter für die Bereitstellung zu definieren. Um diese Art von Dateien zu verwenden, müssen Sie die folgenden Versionen auf Ihrem System haben:
+
+  - Azure CLI 2.48.1 oder später (check with az --version)
+  - Bicep version 0.16.2 oder später (chekc with az bicep --version)
+  - und Sie müssen Ihre bicepconfig.json konfigurieren (siehe Repo für ein Beispiel)
+
+    ```azurecli
+    $location = "your preferred location"
+    
     az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
+
     ```
   

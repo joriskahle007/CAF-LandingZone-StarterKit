@@ -98,20 +98,21 @@ Ganz einfach – folge diesen Schritten:
 3. Bereitstellung starten
 Du hast zwei Optionen:
 
-- Option 1: Klassische Bereitstellung mit .json-Datei
+Option 1: Klassische Bereitstellung mit .json-Datei
 
-    ```$location = "your preferred location"
+    ```azurecli
+    $location = "your preferred location"
     az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
     ```
 
-- Option 2: Neue Bereitstellung mit .bicepparam-Datei
+Option 2: Neue Bereitstellung mit .bicepparam-Datei
 
   Erstelle eine Datei azskmain.bicepparam, um die Parameter zu definieren. Dafür brauchst Du:
 - Azure CLI **2.48.1** oder neuer
 - Bicep **0.16.2** oder neuer
 - Eine konfigurierte bicepconfig.json (Beispiel im Repo)
 
-    ```
+    ```azurecli
     $location = "your preferred location"
     az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
     ```

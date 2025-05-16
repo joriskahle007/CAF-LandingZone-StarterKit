@@ -1,92 +1,89 @@
-# ADN CAF-LandingZone-StarterKit
+# CAF-LandingZone-StarterKit
 
-## Wofür brauche ich das Landing Zone StarterKit
+## Wofür brauchst Du das Landing Zone StarterKit?
 
-Es gibt viele Abonnements in Azure, bei denen eine grundlegende Governance fehlt. Die Absicht des Repos ist es, einige grundlegende Governance-Einstellungen für ein Abonnement bereitzustellen. Dies ist kein Ersatz für eine gut gestaltete Azure Landing Zone. Wenn Sie die Reise zu einer Azure Landing Zone beginnen möchten, lesen Sie bitte diesen [Artikel über das Cloud Adoption Framework(CAF)](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/).
+In vielen Azure-Abonnements fehlt es an grundlegender Governance. Dieses Repository hilft Dir, genau das zu verbessern – es stellt Dir grundlegende Governance-Einstellungen für Dein Azure-Abonnement bereit. Wichtig: Dieses StarterKit ersetzt keine gut durchdachte Azure Landing Zone.
 
-Wenn Sie nicht mit der auf dem CAF basierenden Lannding-Zone beginnen, wird Ihnen dieses Repository dabei helfen, einige Grundlagen zu schaffen, um ein Minimum an Governance einzurichten. 
+Wenn Du gerade erst in die Welt der Azure Landing Zones eintauchst, schau Dir unbedingt diesen <a href:"https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/">Artikel zum Cloud Adoption Framework (CAF)</a>an.
+Falls Du (noch) nicht mit einer CAF-basierten Landing Zone starten willst, bietet Dir dieses Repository einen guten Einstieg in die wichtigsten Governance-Grundlagen.
 
-### Cloud governance Disziplinen 
 
-Fünf Disziplinen der Cloud-Governance: 
+### Die 5 Disziplinen der Cloud Governance
 
-Diese Disziplinen unterstützen die Unternehmenspolitik. Jede Disziplin schützt das Unternehmen vor möglichen Fallstricken:
+Diese fünf Disziplinen bilden das Fundament für Cloud-Governance und helfen Dir, Dein Unternehmen vor typischen Stolperfallen zu schützen:
 
-- Disziplin Kostenmanagement
-- Sicherheitsgrundlagen-Disziplin
-- Disziplin Ressourcenkonsistenz
-- Identitäts-Grundlagendisziplin
-- Disziplin Bereitstellungsbeschleunigung
+- Kostenmanagement
+- Sicherheitsgrundlagen
+- Ressourcenkonsistenz
+- Identitätsmanagement
+- Bereitstellungsbeschleunigung
 
-Dieses Starterkit hilft bei der Einrichtung der Grundlagen für Kostenmanagement, Sicherheit und Identität.
+Dieses StarterKit unterstützt Dich bei den ersten Schritten in den Bereichen **Kostenmanagement, Sicherheit und Identität**.
 
 #### Kostenmanagement
 
-Die Mindestmaßnahme, die im Rahmen eines Abonnements in Azure zu ergreifen ist, besteht darin, dass in Azure Cost Management zwei grundlegende Warnungen eingerichtet werden sollten. Einer dient der Erkennung eines festgelegten Budgets und der andere der Erkennung von Anomalien im Verbrauch.
+Das Minimum, das Du für Dein Azure-Abonnement umsetzen solltest: Zwei grundlegende Warnmeldungen in Azure Cost Management einrichten – eine für Dein Budget und eine für Anomalien im Verbrauch.
 
-##### Einrichten der Budget-Warnung
+##### Budget-Warnung einrichten
 
-Dieses Repository bietet ein Modul zur Bereitstellung der Budget-Warnung. Die Parameter für diesen Alarm werden alle in der Datei azskmain.parameters.json im Stammverzeichnis des Repositorys festgelegt. Die folgenden Parameter müssen gesetzt werden:
+In diesem Repository findest Du ein Modul zur Bereitstellung einer Budget-Warnung. Alle benötigten Parameter dafür legst Du in der Datei azskmain.parameters.json im Stammverzeichnis fest. Hier ein Überblick:
 
 
 |Parameter|Beschreibung|Standardwert|
 |---|---|---|
-|azskBudgetname|Der benutzerfreundliche Name der Budget-Warnung|'Azure StarterKit Budget'|
-|azskBudgetAmount|Der Budgetwert, gegen den getestet werden soll. Sie legen den Geldbetrag fest, auf den der Alarm reagieren soll. Wenn Sie den Wert auf 150 setzen, wird der Alarm ausgelöst, sobald die Ausgaben den prozentualen Anteil des primären und sekundären Schwellenwerts erreichen.
+|azskBudgetname|Der Name der Budget-Warnung|'Azure StarterKit Budget'|
+|azskBudgetAmount|Der Budgetwert, gegen den getestet werden soll. Sie legen den Geldbetrag fest, auf den der Alarm reagieren soll. Wenn Sie den Wert auf 150 setzen, wird der Alarm ausgelöst, sobald die Ausgaben den prozentualen Anteil des primären und sekundären Schwellenwerts erreichen|no default|
 |azskEmailsForAlert|E-Mail-Adresse, an die der alert gesendet werden soll|no default|
 |azskBudgetStartDate|Das Startdatum für die Prüfung der aktuellen Kosten anhand der Budgetgrenze|'2022-12-01'|
-|azskBudgetEndDate|Das Enddatum dieses Kosten-/Budgettests.|'2025-12-01|
-|azskBudgetFirstThreshold|Wenn dieser Prozentsatz erreicht ist, wird der erste Alarm gesendet (80).
+|azskBudgetEndDate|Das Enddatum dieses Kosten-/Budgettests.|'2025-12-01'|
+|azskBudgetFirstThreshold|Wenn dieser Prozentsatz erreicht ist, wird der erste Alarm gesendet |80|
 |azskBudgetSecondThreshold|der zweite prozentuale Schwellenwert für die Auslösung des Alarms|100|
 
-##### Anomalie-Alarm
-
-Im Azure Cost Management gibt es die Möglichkeit, einen Anomaliealarm einzurichten. Mit dieser Einstellung wird eine E-Mail verschickt, sobald Azure Cost Management eine Anomalie in der Kostenprognose feststellt. Es können mehrere Alarme im Portal eingerichtet werden. 
+##### Anomalie-Warnung
+Azure Cost Management erlaubt Dir auch das Einrichten von Anomalie-Warnungen. Du bekommst automatisch eine E-Mail, wenn ungewöhnliche Kostenprognosen festgestellt werden. Du kannst mehrere solcher Alarme im Portal definieren.
 
 #### Grundlegende Sicherheit
+Das StarterKit weist Deinem Abonnement eine Reihe von Azure-Richtlinien zu. Damit legst Du die Grundlage für Sicherheit und Zugriffssteuerung. Alle Richtlinien sind in Gruppen unterteilt:
 
-Wir richten einige grundlegende Azure-Richtlinien ein. Dies ist die Liste der Richtlinien, die dem Abonnement zugewiesen werden. Die folgenden Tabellen zeigen die Gruppen und die zugewiesenen Richtlinien.
-
-##### Identitäts- und Zugangsmanagement
+##### Identitäts- und Zugriffsmanagement
 |Policy|Descitpion|Referenz|
 |---|---|---|
-|Um sicherzustellen, dass die zuständigen Personen in Ihrem Unternehmen benachrichtigt werden, wenn eine potenzielle Sicherheitsverletzung in einem Ihrer Abonnements auftritt, legen Sie einen Sicherheitskontakt fest, der E-Mail-Benachrichtigungen vom Sicherheitscenter erhält.|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_Security_contact_email.json)|
-|Für Ihr Abonnement sollten maximal 3 Eigentümer bestimmt werden. Es wird empfohlen, bis zu 3 Eigentümer für Ihr Abonnement zu bestimmen, um das Potenzial für einen Verstoß durch einen gefährdeten Eigentümer zu verringern.|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_DesignateLessThanXOwners_Audit.json)|
+|Lege einen Sicherheitskontakt fest, der bei sicherheitsrelevanten Vorfällen benachrichtigt wird.|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_Security_contact_email.json)|
+|Maximal 3 Eigentümer pro Abonnement zur Risikominimierung|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_DesignateLessThanXOwners_Audit.json)|
 
 ##### Netzwerk
 |Policy|Descitpion|Referenz|
 |---|---|---|
-|Alle Netzwerk-Ports sollten auf Netzwerksicherheitsgruppen beschränkt werden, die mit Ihren VMs verknüpft sind|Alle Netzwerk-Ports sollten auf Netzwerksicherheitsgruppen beschränkt werden, die mit Ihrer virtuellen Maschine verknüpft sind|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_UnprotectedEndpoints_Audit.json)|
-|nternetfacing VMs sollten mit NSGs geschützt werden'|Schützen Sie Ihre virtuellen Maschinen vor potenziellen Bedrohungen, indem Sie den Zugriff auf sie mit Netzwerksicherheitsgruppen (NSGs) beschränken. Erfahren Sie mehr über die Kontrolle des Datenverkehrs mit NSGs unter [https://aka.ms/nsg-doc](https://aka.ms/nsg-doc)|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_NetworkSecurityGroupsOnInternetFacingVirtualMachines_Audit.json)|
-|Subnetze sollten mit einer Netzwerksicherheitsgruppe verbunden werden. Schützen Sie Ihr Subnetz vor potenziellen Bedrohungen, indem Sie den Zugriff darauf mit einer Netzwerksicherheitsgruppe (NSG) einschränken. NSGs enthalten eine Liste von ACL-Regeln (Access Control List), die den Netzwerkverkehr zu Ihrem Subnetz erlauben oder verweigern.|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_NetworkSecurityGroupsOnSubnets_Audit.json)|
-|Network Watcher sollte aktiviert sein. Network Watcher ist ein regionaler Dienst, der es Ihnen ermöglicht, Bedingungen auf der Ebene eines Netzwerkszenarios in, zu und von Azure zu überwachen und zu diagnostizieren. Die Überwachung auf Szenarioebene ermöglicht Ihnen die Diagnose von Problemen auf einer End-to-End-Ansicht auf Netzwerkebene. In jeder Region, in der ein virtuelles Netzwerk vorhanden ist, muss eine Netzwerküberwachungsressourcengruppe erstellt werden. Wenn in einer bestimmten Region keine Netzwerküberwachungs-Ressourcengruppe verfügbar ist, wird eine Warnung aktiviert.|[Defintion](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Network/NetworkWatcher_Enabled_Audit.json)|
+|Alle Netzwerkports müssen durch NSGs abgesichert sein|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_UnprotectedEndpoints_Audit.json)|
+|Öffentlich erreichbare VMs sollten durch NSGs geschützt sein|Schützen Sie Ihre virtuellen Maschinen vor potenziellen Bedrohungen, indem Sie den Zugriff auf sie mit Netzwerksicherheitsgruppen (NSGs) beschränken. Erfahren Sie mehr über die Kontrolle des Datenverkehrs mit NSGs unter [https://aka.ms/nsg-doc](https://aka.ms/nsg-doc)|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_NetworkSecurityGroupsOnInternetFacingVirtualMachines_Audit.json)|
+|Subnetze sollten mit NSGs verknüpft sein|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_NetworkSecurityGroupsOnSubnets_Audit.json)|
+|Network Watcher sollte aktiviert sein, um den Netzwerkverkehr zu überwachen|[Defintion](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Network/NetworkWatcher_Enabled_Audit.json)|
 
 ##### Sicherheit
 |Policy|Descitpion|Referenz|
 |---|---|---|
-|System-Updates sollten auf Ihren Rechnern installiert werden. Fehlende Sicherheitssystem-Updates auf Ihren Servern werden vom Azure Security Center als Empfehlungen überwacht.|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_MissingSystemUpdates_Audit.json)|
+|Stelle sicher, dass Deine Systeme regelmäßig Updates erhalten|[Definition](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Government/Security%20Center/ASC_MissingSystemUpdates_Audit.json)|
 
-Alle Richtlinien werden in einer Initiative gesammelt und diese wird dem Abonnement im Rahmen der Bereitstellung zugewiesen. Dies bietet die Möglichkeit, auf einen Blick zu überprüfen, wie gut die Azure-Ressourcen mit diesen Richtlinien übereinstimmen.
-
+Alle Richtlinien werden in einer **Initiative** gebündelt und automatisch Deinem Abonnement zugewiesen. So kannst Du auf einen Blick sehen, wie gut Deine Azure-Ressourcen mit den Sicherheitsvorgaben übereinstimmen:
 ![Ansicht zur Einhaltung von Azure-Richtlinien](/media/AuditReport.png)
 
-## Wie wird das Paket ausgerollt?
 
-Um dieses Starter Kit für ein neues oder bereits bestehendes Abonnement einzusetzen, führen Sie einfach die folgenden Schritte aus:
+## Wie setzt Du das StarterKit ein?
+Ganz einfach – folge diesen Schritten:
 
-1. Sicherstellen, dass Sie bei Azure angemeldet sind
+1. Melde Dich bei Azure an
 
     ```azurecli
     az login
     ```
 
-2. Auswählen der richtigen Subscrition
+2. Wähle Dein Abonnement aus
 
     ```azurecli
     az account show --output table
     ```
 
-    Prüfen Sie in der Ausgabe, welches Abonnement verwendet werden soll, und führen Sie den folgenden Befehl aus, um Ihre spezifische ID festzulegen
+    Suche in der Ausgabe das gewünschte Abonnement und setze es:
 
     ```azurecli
     $subscriptionID = "your subscription ID"
@@ -98,29 +95,29 @@ Um dieses Starter Kit für ein neues oder bereits bestehendes Abonnement einzuse
     az account set --subscription $subscriptionID
     ```
 
-3. Im nächsten Schritt können Sie zwischen zwei Optionen wählen:
+3. Bereitstellung starten
+Du hast zwei Optionen:
 
-- Erstellen Sie eine neue Bereitstellung auf der Abonnementebene mit der klassischen **.json-Parameterdatei**, um das Starter Kit bereitzustellen
+- Option 1: Klassische Bereitstellung mit .json-Datei
 
-    ```azurecli
-    $location = "your preferred location"
-    
-    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
+    ```$location = "your preferred location"
+
+az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
     
     ```
 
-- Erstellen Sie eine neue Bereitstellung auf der Abonnementebene mit der neuen **.bicepparam-Parameterdatei**, um das Starterkit bereitzustellen
+- Option 2: Neue Bereitstellung mit .bicepparam-Datei
 
-    Zu diesem Zweck müssen Sie eine neue Bicep-Datei mit dem Namen azskmain.bicepparam erstellen, um die Parameter für die Bereitstellung zu definieren. Um diese Art von Dateien zu verwenden, müssen Sie die folgenden Versionen auf Ihrem System haben:
+  Erstelle eine Datei azskmain.bicepparam, um die Parameter zu definieren. Dafür brauchst Du:
+- Azure CLI **2.48.1** oder neuer
+- Bicep **0.16.2** oder neuer
+- Eine konfigurierte bicepconfig.json (Beispiel im Repo)
 
-  - Azure CLI 2.48.1 oder später (check with az --version)
-  - Bicep version 0.16.2 oder später (chekc with az bicep --version)
-  - und Sie müssen Ihre bicepconfig.json konfigurieren (siehe Repo für ein Beispiel)
-
-    ```azurecli
+    ```
     $location = "your preferred location"
-    
-    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
+
+az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
+
 
     ```
   

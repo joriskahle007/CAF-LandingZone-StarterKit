@@ -100,7 +100,9 @@ Du hast zwei Optionen:
 
 Option 1: Klassische Bereitstellung mit .json-Datei
 
-    dvdvdfvdfvdfvdf
+    $location = "your preferred location"
+    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
+
     
   $location = "your preferred location"
     az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if

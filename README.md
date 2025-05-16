@@ -104,10 +104,6 @@ Option 1: Klassische Bereitstellung mit .json-Datei
     az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
 
     
-  $location = "your preferred location"
-    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
-
-
 Option 2: Neue Bereitstellung mit .bicepparam-Datei
 
   Erstelle eine Datei azskmain.bicepparam, um die Parameter zu definieren. Dafür brauchst Du:

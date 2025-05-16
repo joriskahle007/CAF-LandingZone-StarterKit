@@ -101,9 +101,7 @@ Du hast zwei Optionen:
 - Option 1: Klassische Bereitstellung mit .json-Datei
 
     ```$location = "your preferred location"
-
-az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
-    
+    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.parameters.json" --confirm-with-what-if
     ```
 
 - Option 2: Neue Bereitstellung mit .bicepparam-Datei
@@ -115,9 +113,6 @@ az deployment sub create --location $location --template-file "azskmain.bicep" -
 
     ```
     $location = "your preferred location"
-
-az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
-
-
+    az deployment sub create --location $location --template-file "azskmain.bicep" --parameters "azskmain.bicepparam" --confirm-with-what-if
     ```
   

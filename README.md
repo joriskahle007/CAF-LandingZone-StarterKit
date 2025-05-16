@@ -95,9 +95,9 @@ Ganz einfach – folge diesen Schritten:
     az account set --subscription $subscriptionID
     ```
 
-3. Im nächsten Schritt können Sie zwischen zwei Optionen wählen:
+3. Bereitstellung starten - Du hast zwei Optionen:
 
-- Erstellen Sie eine neue Bereitstellung auf der Abonnementebene mit der klassischen **.json-Parameterdatei**, um das Starter Kit bereitzustellen
+- Option 1: Klassische Bereitstellung mit **.json**-Datei
 
     ```azurecli
     $location = "your preferred location"
@@ -106,13 +106,13 @@ Ganz einfach – folge diesen Schritten:
     
     ```
 
-- Erstellen Sie eine neue Bereitstellung auf der Abonnementebene mit der neuen **.bicepparam-Parameterdatei**, um das Starterkit bereitzustellen
+- Option 2: Neue Bereitstellung mit **.bicepparam**-Datei
 
-    Zu diesem Zweck müssen Sie eine neue Bicep-Datei mit dem Namen azskmain.bicepparam erstellen, um die Parameter für die Bereitstellung zu definieren. Um diese Art von Dateien zu verwenden, müssen Sie die folgenden Versionen auf Ihrem System haben:
+   Erstelle eine Datei azskmain.bicepparam, um die Parameter zu definieren. Dafür brauchst Du:
 
-  - Azure CLI 2.48.1 oder später (check with az --version)
-  - Bicep version 0.16.2 oder später (chekc with az bicep --version)
-  - und Sie müssen Ihre bicepconfig.json konfigurieren (siehe Repo für ein Beispiel)
+  - Azure CLI **2.48.1** oder später (check with az --version)
+  - Bicep version **0.16.2** oder später (chekc with az bicep --version)
+  - und Sie müssen Ihre **bicepconfig.json** konfigurieren (siehe Repo für ein Beispiel)
 
     ```azurecli
     $location = "your preferred location"

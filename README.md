@@ -98,13 +98,13 @@ Ganz einfach – folge diesen Schritten:
 3. Bereitstellung starten
 Du hast zwei Optionen:
 
-1. Option 1: Klassische Bereitstellung mit .json-Datei
+1. Option 1: Klassische Bereitstellung mit 
 
  ```azurecli
     az login
     ```
 
-2. Option 2: Neue Bereitstellung mit .bicepparam-Datei
+2. Option 2: Neue Bereitstellung mit 
 
     ```azurecli
     az login
